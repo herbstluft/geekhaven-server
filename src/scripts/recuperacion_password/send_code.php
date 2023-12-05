@@ -40,8 +40,7 @@ if(isset($correo)){
         WHERE id_persona=$id";
 
         $insert_codigo_verificacion=$db->ejecutarConsulta($sql);
-
-   header("Location: insert_code.php?id=$id"); 
+        header("Location: insert_code.php?id=$id");
 
         }
 
@@ -59,18 +58,18 @@ try {
     $mail->isSMTP();                                            //Send using SMTP
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'chatphone.service@gmail.com';                     //SMTP username
-    $mail->Password   = 'pgocjbkgkgowoslt';                               //SMTP password
+    $mail->Username   = 'geekhaven.soporte@gmail.com';                     //SMTP username
+    $mail->Password   = 'kuyrbsyukrmwbbpw';                               //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('chatphone.service@gmail.com', 'ChatPhone');
+    $mail->setFrom('geekhaven.soporte@gmail.com', 'Geekhaven');
     $mail->addAddress($correo, 'Angel');     //Add a recipient
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Codigo de verificacion para restablecer contraseña de  Chatphone';
+    $mail->Subject = 'Codigo de verificacion para restablecer contraseña de  Geekhaven';
     $mail->Body    ='
     <!DOCTYPE html>
 <html lang="en" style="background-color: white;">
@@ -94,7 +93,7 @@ try {
    <div  style="margin:2%; margin-top:-30px; background:none">
 
     <p style="margin-bottom:20px; opacity:0.8">Hola, ' . $nombre. ':</p>
-    <p style="margin-bottom:20px; opacity:0.8">Recibimos una solicitud para restablecer tu contraseña de ChatPhone.
+    <p style="margin-bottom:20px; opacity:0.8">Recibimos una solicitud para restablecer tu contraseña de Geekhaven.
 Ingresa el siguiente código para restablecer la contraseña:</p>
 
 <div style="background:#e7f3ff; border: 1px solid #1877f2; border-radius:10px; width:200px; padding:3px">
@@ -107,7 +106,7 @@ Ingresa el siguiente código para restablecer la contraseña:</p>
 <center><p style="color:#939393">from</p></center>
 
 <center>
-<img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/0d6efd/approval.png" alt="approval"/>&ensp; <b style="margin-top:5px">ChatPhone</b>
+<img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/0d6efd/approval.png" alt="approval"/>&ensp; <b style="margin-top:5px">Geekhaven</b>
 </center>
 <br>
 
@@ -123,7 +122,7 @@ A fin de proteger tu cuenta, no reenvíes este correo electrónico. </p>
 
 
 </body>
-</html>-*
+</html>
     ';
 
     $mail->CharSet = 'UTF-8';
@@ -152,50 +151,17 @@ A fin de proteger tu cuenta, no reenvíes este correo electrónico. </p>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../../views-index/estilos.css">
+    <link rel="stylesheet" href="/src/views/admin/assets/css/styles.min.css" />
         <!--Boostrap--> 
 </head>
 
 <body style="background-color: white;">
 
 <div class="todo">
-        <!--Barra de navegacion-->
-        <nav style="padding-left: 15%; border-bottom: 1px solid #d8d8d8;     backdrop-filter: saturate(180%) blur(20px);
-        background-color: rgba(255,255,255,.72);" class="barra navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-              <a style="font-weight: 500;" class="navbar-brand" href="../index.php">ChatPhone</a>
-              <button style="border: 0px ; background-color: transparent;" class="" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="d-block d-sm-none bi bi-chevron-down" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-                </svg>
-                <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="d-none d-sm-block d-md-none bi bi-chevron-down" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-                </svg>
-                <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="d-none d-md-block d-lg-none bi bi-chevron-down" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-                </svg>
-                
-              </button>
-              
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div style="margin-left: 45%;"></div>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link text-bar" aria-current="page" href="../../../views-index/login.php">Iniciar sesión</a>
-                    
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-bar" href="../../../views-index/crear-chatphone-id.php">Crear tu ChatPhone ID</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-bar" href="../../../views-index/preguntas.php" >Preguntas frecuentes</a>
-                  </li>
-                </ul>
-               
-              </div>
-            </div>
-        </nav>
-        <!--Barra de navegacion-->
-
+      
+<?php
+include('../../../templates/navbar_user.php');
+?>
             
         <br><br><br>
 
@@ -223,6 +189,11 @@ A fin de proteger tu cuenta, no reenvíes este correo electrónico. </p>
         </div>
 
         <script src="../../../bootstrap/js/transiciondeentrada.js"></script>
+        <script src="/src/views/admin/assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="/src/views/admin/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/src/views/admin/assets/js/sidebarmenu.js"></script>
+  <script src="/src/views/admin/assets/js/app.min.js"></script>
+  <script src="/src/views/admin/assets/libs/simplebar/dist/simplebar.js"></script>
 
 </body>
 </html>
@@ -230,6 +201,7 @@ A fin de proteger tu cuenta, no reenvíes este correo electrónico. </p>
  <?php       
     }
 }
+
 
 
 

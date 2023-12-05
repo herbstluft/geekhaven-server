@@ -58,12 +58,11 @@
             <hr style="opacity:0.1">
 
             <?php
-$productosOrdenQry="SELECT orden.fecha,productos.id_producto, productos.nom_producto,detalle_orden.cantidad,productos.precio, (productos.precio*detalle_orden.cantidad) as 'total', usuarios.telefono, CONCAT(personas.nombre, personas.apellido) AS 'nombre', personas.correo 
-from personas join usuarios on personas.id_persona=usuarios.id_persona 
-JOIN detalle_orden on usuarios.id_usuario = detalle_orden.id_usuario 
-JOIN productos on detalle_orden.id_producto = productos.id_producto
-JOIN categorias on productos.id_cat = categorias.id_cat
-JOIN orden on orden.id_orden = detalle_orden.id_orden WHERE detalle_orden.id_orden=$id_orden";
+$productosOrdenQry="SELECT orden.fecha,productos.id_producto, productos.nom_producto,detalle_orden.cantidad,productos.precio,
+ (productos.precio*detalle_orden.cantidad) as 'total', usuarios.telefono, CONCAT(personas.nombre, personas.apellido) AS 'nombre',
+ personas.correo from personas join usuarios on personas.id_persona=usuarios.id_persona JOIN detalle_orden on usuarios.id_usuario = detalle_orden.id_usuario
+ JOIN productos on detalle_orden.id_producto = productos.id_producto JOIN categorias on productos.id_cat = categorias.id_cat JOIN orden on
+ orden.id_orden = detalle_orden.id_orden WHERE detalle_orden.id_orden=$id_orden";
 $productosOrden=$db->seleccionarDatos($productosOrdenQry);
 foreach ($productosOrden as $mis_compras){
     $nombre_producto=$mis_compras['nom_producto'];
@@ -77,11 +76,11 @@ foreach ($productosOrden as $mis_compras){
 ?>
             <div class="row">
                 <div class="col-5" style="margin-bottom:30px">
-                <img src="/img_producto/<?php $id_producto=$mis_compras['id_producto'];
-                     $sacarImgQry="SELECT *  from productos INNER JOIN img_productos on img_productos.id_producto=productos.id_producto where productos.id_producto=$id_producto GROUP by img_productos.id_producto ";
+                <img src="/src/views/admin/html/img_producto/<?php $id_producto=$mis_compras['id_producto'];
+                     $sacarImgQry="SELECT *  from productos INNER JOIN img_productos on img_productos.id_producto=productos.id_producto where productos.id_producto=$id_producto LIMIT 1 ";
                      $sacarImg=$db->seleccionarDatos($sacarImgQry);
                 foreach($sacarImg as $imagPrd){
-                echo $imagPrd['nombre_imagen'];?>" class="d-block" width="135"  height="135"><?php echo $imagPrd['nombre_imagen'];}?>
+                echo $imagPrd['nombre_imagen'];?>"" class="d-block" width="135"  height="135"><?php echo "";}?>
                 </div>
 
                 <div class="col-7 text-center" style="padding-top:30px">
@@ -113,12 +112,18 @@ foreach ($productosOrden as $mis_compras){
                 <div class="col-6 text-center" >
                    <h3 style="margin-top:20px;color:red">Total</h3>
                     <p style="color:black; font-size:20px"><?php 
-                    $total_pedidoQry="SELECT TRUNCATE(PRD.total, 2) as 'total' FROM (SELECT orden.fecha,productos.nom_producto,detalle_orden.cantidad,productos.precio, SUM(productos.precio*detalle_orden.cantidad) as 'total', usuarios.telefono, CONCAT(personas.nombre, personas.apellido) AS 'nombre', personas.correo 
-                    from personas join usuarios on personas.id_persona=usuarios.id_persona 
-                    JOIN detalle_orden on usuarios.id_usuario = detalle_orden.id_usuario 
-                    JOIN productos on detalle_orden.id_producto = productos.id_producto
-                    JOIN categorias on productos.id_cat = categorias.id_cat
-                    JOIN orden on orden.id_orden = detalle_orden.id_orden WHERE detalle_orden.id_orden=$id_orden) as PRD";
+                    $total_pedidoQry="SELECT TRUNCATE(PRD.total, 2) AS 'total' FROM (
+    SELECT orden.fecha, 
+           SUM(productos.precio * detalle_orden.cantidad) AS 'total'
+    FROM personas
+    JOIN usuarios ON personas.id_persona = usuarios.id_persona 
+    JOIN detalle_orden ON usuarios.id_usuario = detalle_orden.id_usuario 
+    JOIN productos ON detalle_orden.id_producto = productos.id_producto
+    JOIN orden ON orden.id_orden = detalle_orden.id_orden 
+    WHERE detalle_orden.id_orden = $id_orden
+    GROUP BY orden.fecha
+) AS PRD;
+";
                     $total_pedido=$db->seleccionarDatos($total_pedidoQry);
                     foreach($total_pedido as $res){
                     echo '$' . $res['total'];} ?></p>
@@ -146,7 +151,7 @@ foreach ($productosOrden as $mis_compras){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <a href="/var/www/geekhaven/src/scripts/ventas/finalizarVenta.php?orden=<?php echo $id_orden?>"class="btn btn-primary">Finalizar venta</a>
+        <a href="/src/scripts/ventas/finalizarVenta.php?orden=<?php echo $id_orden?>"class="btn btn-primary">Finalizar venta</a>
       </div>
     </div>
   </div>
@@ -168,7 +173,7 @@ foreach ($productosOrden as $mis_compras){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <a href="/var/www/geekhaven/src/scripts/ventas/declinarVenta.php?orden=<?php echo $id_orden?>"class="btn btn-primary">Declinar venta</a>
+        <a href="/src/scripts/ventas/declinarVenta.php?orden=<?php echo $id_orden?>"class="btn btn-primary">Declinar venta</a>
       </div>
     </div>
   </div>

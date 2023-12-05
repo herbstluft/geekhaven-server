@@ -22,6 +22,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Editar Universo</title>
+  <link rel="stylesheet" href="../assets/css/styles.min.css" />
   <link rel="shortcut icon" type="image/png" href="../../views/admin/assets/images/logos/favicon.png" />
   <link rel="stylesheet" href="../assets/css/styles.min.css" />
 </head>
@@ -36,7 +37,7 @@
 <h1 align="center">Editar Universo</h1>
 <div class="container">
     <div class="row">
-        <form action="/var/www/geekhaven/src/scripts/insersiones/editarUniverso.php" method="POST" enctype="multipart/form-data">
+        <form action="/src/scripts/insersiones/editarUniverso.php" method="POST" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="universo" class="form-label">Nombre del Universo</label>
             <input type="text" class="form-control" name="universo" id="universo" value="<?php echo $u_nom?>" required>

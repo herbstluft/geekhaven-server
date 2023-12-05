@@ -40,10 +40,10 @@ if (isset($_GET['mensaje'])) {
         echo " <br<div class='container mt-5'>
       <div class='alert alert-warning' role='alert'>
         <div class='row'>
-        <center>El producto se ha actualizado a: "."<strong> "." $NombreUni"."</strong> "." con exito</center>
-        Producto Eliminado<br>
+        <center>El universo ha sido actualizado con exito!</center>
+       
         </div>
-        </div>
+      
         </div>";
     }}
     elseif ($_GET['mensaje'] == 'failed') {
@@ -58,7 +58,7 @@ if (isset($_GET['mensaje'])) {
         <center>El universo"."<strong> "." $NombreUni"."</strong> "." no puede ser eliminado porque aun hay productos con este universo</center>
         <br>
         </div>
-        </div>
+      
         </div>";
     }
     }
@@ -84,7 +84,7 @@ if (isset($_GET['mensaje'])) {
           <th scope="row" class="fs-5"><strong> <?php echo $nombre;?></strong></th>
           <td> <a href="editImgUniverso.php?id=<?php echo $id?>" class="fs-5 text-primary">Editar Imagen</a></td>
           <td> <a href="editNomUniverso.php?id=<?php echo $id?>" class="fs-5 text-primary">Editar Nombre</a></td>
-          <td><a href="/var/www/geekhaven/src/scripts/insersiones/borrarUniverso.php?id=<?php echo $id;?>" class="fs-5 text-danger">Eliminar</a></td>
+          <td><a href="/src/scripts/insersiones/borrarUniverso.php?id=<?php echo $id;?>" class="fs-5 text-danger">Eliminar</a></td>
         </tr>
         <?php
             }

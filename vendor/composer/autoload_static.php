@@ -22,6 +22,7 @@ class ComposerStaticInite043df3e3bc484500d35d1415f8e9354
         'S' => 
         array (
             'Svg\\' => 4,
+            'Sabberworm\\CSS\\' => 15,
         ),
         'P' => 
         array (
@@ -33,6 +34,7 @@ class ComposerStaticInite043df3e3bc484500d35d1415f8e9354
         ),
         'M' => 
         array (
+            'MyCLabs\\Enum\\' => 13,
             'MyApp\\' => 6,
             'Matrix\\' => 7,
             'Masterminds\\' => 12,
@@ -64,6 +66,10 @@ class ComposerStaticInite043df3e3bc484500d35d1415f8e9354
         array (
             0 => __DIR__ . '/..' . '/phenx/php-svg-lib/src/Svg',
         ),
+        'Sabberworm\\CSS\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sabberworm/php-css-parser/src',
+        ),
         'Psr\\SimpleCache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/simple-cache/src',
@@ -84,6 +90,10 @@ class ComposerStaticInite043df3e3bc484500d35d1415f8e9354
         'PHPMailer\\PHPMailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
+        'MyCLabs\\Enum\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/myclabs/php-enum/src',
         ),
         'MyApp\\' => 
         array (
@@ -112,13 +122,6 @@ class ComposerStaticInite043df3e3bc484500d35d1415f8e9354
     );
 
     public static $prefixesPsr0 = array (
-        'S' => 
-        array (
-            'Sabberworm\\CSS' => 
-            array (
-                0 => __DIR__ . '/..' . '/sabberworm/php-css-parser/lib',
-            ),
-        ),
         'P' => 
         array (
             'PHPExcel' => 
@@ -138,6 +141,7 @@ class ComposerStaticInite043df3e3bc484500d35d1415f8e9354
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Dompdf\\Cpdf' => __DIR__ . '/..' . '/dompdf/dompdf/lib/Cpdf.php',
+        'Stringable' => __DIR__ . '/..' . '/myclabs/php-enum/stubs/Stringable.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

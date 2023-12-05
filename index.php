@@ -368,7 +368,7 @@ foreach ($recien_llegados as $producto_recien_llegado) {
 
 
 <br><br><br>
-<h2>Universos</h2>
+<center><h2>Universos</h2></center>
 <br><br>
 
 <div class="container">

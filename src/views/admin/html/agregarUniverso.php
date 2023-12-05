@@ -26,7 +26,7 @@
 if(isset($_GET['alerta'])){
   $alerta=$_GET['alerta'];
 
-  if($alerta='error'){
+  if($alerta=='error'){
     echo " <center><div class='container mt-5'>
 <div class='alert alert-danger col-5' role='alert'>
   <div class='row'>
@@ -34,7 +34,7 @@ if(isset($_GET['alerta'])){
   <center><p class='fs-1'>No se puede repetir el mismo universo</p></center>
   </div></center>";
   }
-  elseif($alerta='success'){
+  elseif($alerta=='success'){
     echo " <center><div class='container mt-5'>
     <div class='alert alert-success col-5' role='alert'>
       <div class='row'>

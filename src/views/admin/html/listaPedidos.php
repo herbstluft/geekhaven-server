@@ -8,7 +8,7 @@
     JOIN detalle_orden on usuarios.id_usuario = detalle_orden.id_usuario 
     JOIN productos on detalle_orden.id_producto = productos.id_producto
     JOIN categorias on productos.id_cat = categorias.id_cat 
-    JOIN orden on orden.id_orden = detalle_orden.id_orden WHERE detalle_orden.estatus=1 GROUP BY productos.nom_producto, orden.fecha, detalle_orden.id_orden, usuarios.telefono, personas.correo, personas.nombre, personas.apellido ";
+    JOIN orden on orden.id_orden = detalle_orden.id_orden WHERE detalle_orden.estatus=1 GROUP BY detalle_orden.id_orden";
     $pedidosPendientes=$db->seleccionarDatos($pedidosPendientesQry);
 
 ?>
