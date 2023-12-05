@@ -115,28 +115,55 @@ $gananciasDia = $db->seleccionarDatos($sqlGananciasDia);
 // Inicializa la variable para almacenar el resultado de la consulta
 $resultado = null;
 
+
+
+
+
+
+    // Consulta SQL para obtener las ganancias del producto específico por nombre
+    $sql_p = "SELECT 
+    p.id_producto,
+    p.nom_producto,
+    p.precio,
+    SUM(detalle_orden.cantidad * p.precio) AS ganancias_producto
+FROM 
+    detalle_orden
+    JOIN productos p ON detalle_orden.id_producto = p.id_producto WHERE detalle_orden.estatus=2
+  ";
+
+$resultado_p = $db->seleccionarDatos($sql_p);
+
 // Verifica si el formulario ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtiene el nombre del producto desde el formulario
     $nombreProducto = $_POST["nombre_producto"];
 
     // Consulta SQL para obtener las ganancias del producto específico por nombre
-    $sql = "SELECT 
-        p.id_producto,
-        p.nom_producto,
-        p.precio,
-        SUM(detalle_orden.cantidad * p.precio) AS ganancias_producto
-    FROM 
-        detalle_orden
-        JOIN productos p ON detalle_orden.id_producto = p.id_producto
-    WHERE 
-        p.nom_producto = :nombreProducto;";
+    $sql_p = "SELECT 
+    p.id_producto,
+    p.nom_producto,
+    p.precio,
+    SUM(detalle_orden.cantidad * p.precio) AS ganancias_producto
+FROM 
+    detalle_orden
+    JOIN productos p ON detalle_orden.id_producto = p.id_producto WHERE detalle_orden.estatus=2
+  ";
 
     // Ejecuta la consulta y guarda el resultado
-    $resultado = $db->seleccionarDatos($sql, [
+    $resultado_p = $db->seleccionarDatos($sql_p, [
         ':nombreProducto' => $nombreProducto
     ]);
 }
+
+
+
+
+
+
+
+
+
+
 //----------------------------------------------------------------------
 // Inicializar la variable $from_date
 $from_date = "";
@@ -217,6 +244,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="shortcut icon" type="image/png" href="../../views/admin/assets/images/logos/favicon.png" />
     <link rel="stylesheet" href="../assets/css/styles.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/bootstrap/css/estilos.css" />
     <style>
         .report-chart {
             display: none;
@@ -359,30 +387,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <hr>
     
         
-        <h5>Ganancias del Producto</h5>
+<center>        <h3>Ganancias del Producto</h3></center>
+        <br>
 
-<!-- Formulario Bootstrap para ingresar el nombre del producto -->
-<form method="post" action="" id="id">
-    <div class="form-row">
-        <div class="form-group col-md-4">
-            <label for="nombre_producto">Nombre del Producto:</label>
-            <input type="text" class="form-control" name="nombre_producto" id="nombre_producto" required>
+        <div class="search-container">
+        <form class="d-flex primary" role="search" style="witdh:100%">
+
+        <svg style="align-self:center; margin-left:20px" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+</svg>
+
+            <input  data-table="table_id" class="light-table-filter" type="text" name="nombre_producto"   id="search-input" placeholder=" Busca un producto"> 
+        </form>
         </div>
-        <div class="form-group col-md-2">
-            <label for="submitBtn" class="invisible">Consultar Ganancias</label>
-            <button type="submit" id="submitBtn" class="btn btn-primary btn-block mt-4">Consultar Ganancias</button>
-        </div>
-    </div>
-</form>
+
+
+        
+        <script>
+            new DataTable('#table_id');
+        </script>
+        
+
+
+
 <br>
 
 <!-- Mostrar resultados si la consulta ha sido realizada -->
-<?php if ($resultado) : ?>
-    <h6 class="mt-4">Resultados para el producto seleccionado (<?php echo $resultado[0]['nom_producto']; ?>)</h6>
+
     <table class="table">
         <thead>
             <tr>
-                <th>ID del Producto</th>
+            
                 <th>Nombre del Producto</th>
                 <th>Precio del Producto</th>
                 <th>Ganancias Totales</th>
@@ -390,14 +425,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </thead>
         <tbody>
             <tr>
+            <?php 
+
+         
+    foreach ($resultado_p as $gp ) {  ?>
+   
+        <td><?php echo $gp['nom_producto'];  ?></td>
+                <td>$<?php echo number_format($gp['precio'], 2); ?></td>
+                <td>$<?php echo number_format($gp['ganancias_producto'], 2); ?></td>
+
+        <?php
+    }
+
+
+    ?>
+
                 
-                <td><?php echo $resultado[0]['nom_producto']; ?></td>
-                <td>$<?php echo number_format($resultado[0]['precio'], 2); ?></td>
-                <td>$<?php echo number_format($resultado[0]['ganancias_producto'], 2); ?></td>
             </tr>
         </tbody>
     </table>
-<?php endif; ?>
+
+
       <hr>
         <h5>Ventas por Categoría</h5>
 <button class="btn btn-primary" data-toggle="collapse" data-target="#ventasPorCategoria">Mostrar</button>
@@ -555,4 +603,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </body>
 
+
+
+<script src="/bootstrap/js/buscador_table.js"></script>
 </html>
