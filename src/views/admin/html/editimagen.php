@@ -10,8 +10,8 @@
     <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
-  <link rel="stylesheet" href="/var/www/geekhaven/src/views/admin/assets/css/styles.min.css" />
-  <link rel="stylesheet" href="/var/www/geekhaven/bootstrap/css/estilos.css" />
+  <link rel="stylesheet" href="/src/views/admin/assets/css/styles.min.css" />
+  <link rel="stylesheet" href="/bootstrap/css/estilos.css" />
     
     <title>Editar Imagen</title>
   </head>
@@ -23,7 +23,7 @@
 <br><br><br>
    <h1 align="center">Editar imagen del producto</h1>
    <hr>
-   <a href="/var/www/geekhaven/src/views/admin/html/editar_producto.php" class="">
+   <a href="/src/views/admin/html/editar_producto.php" class="">
               <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left icono" viewBox="0 0 16 16">
                   <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
               </svg>  
@@ -61,14 +61,14 @@
       <center>  
       <?php 
       //SACAR IMAGEN
-      $ImgPrdQry="SELECT img_productos.nombre_imagen from img_productos join productos on img_productos.id_producto = productos.id_producto where productos.id_producto=$id_prd";
+      $ImgPrdQry="SELECT img_productos.nombre_imagen from img_productos join productos on img_productos.id_producto = productos.id_producto where productos.id_producto=$id_prd limit 1";
       $ImgPrd=$db->seleccionarDatos($ImgPrdQry);
       if(!empty($ImgPrd)){
       foreach($ImgPrd as $res){
         $imagen=$res['nombre_imagen'];
 
       ?>  
-      <img width="410" height="410" src="/var/www/geekhaven/src/views/admin/html/img_producto/<?php echo $imagen;?>" ></center> 
+      <img width="410" height="410" src="/src/views/admin/html/img_producto/<?php echo $imagen;?>" ></center> 
       <?php echo "";}
       }
       else{
@@ -80,7 +80,7 @@
         </div>
   <div class="col-sm-12 col-md-5 ms-5">
     
-    <form action="/var/www/geekhaven/src/scripts/insersiones/editImgPrd.php" method="post" enctype="multipart/form-data">
+    <form action="/src/scripts/insersiones/editImgPrd.php" method="post" enctype="multipart/form-data">
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Inserta la nueva imagen</label>
         <input type="file"id="image" name="imagen" accept="image/*"class="form-control" required>

@@ -33,7 +33,7 @@ JOIN usuarios u ON do.id_usuario = u.id_usuario
 JOIN personas ON personas.id_persona = u.id_persona
 WHERE u.id_usuario = $usr AND do.estatus = 1
 GROUP BY o.id_orden,  do.fecha_detalle
-ORDER BY do.fecha_detalle $orderClause";
+ORDER BY o.id_orden desc";
 
     $mis_compras=$db->seleccionarDatos($sql);
 

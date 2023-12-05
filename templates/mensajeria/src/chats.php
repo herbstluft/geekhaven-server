@@ -111,9 +111,9 @@ $pub_titulo=$michats['titulo'];
 
     // Imagen del perfil
     if (isset($_SESSION['user']) && $id == $_SESSION['user']) {
-        $mi_chats .= '<img class="profile-image" src="/var/www/geekhaven/src/views/admin/html/img_profile/' . $imagenchat . '" alt="Perfil Chat 1">';
+        $mi_chats .= '<img class="profile-image" src="/src/views/admin/html/img_profile/' . $imagenchat . '" alt="Perfil Chat 1">';
     } elseif (isset($_SESSION['admin']) && $id == $_SESSION['admin']) {
-        $mi_chats .= '<img class="profile-image" src="/var/www/geekhaven/src/views/user/img_profile/' . $imagenchat . '" alt="Perfil Chat 1">';
+        $mi_chats .= '<img class="profile-image" src="/src/views/user/img_profile/' . $imagenchat . '" alt="Perfil Chat 1">';
     }
     
 
@@ -136,7 +136,7 @@ $pub_titulo=$michats['titulo'];
         $mi_chats .= '<a class="text-truncate" style="text-decoration:none;" href="conversacion.php?id_friend=' . urlencode($id_amigo) . '&id_pub=' . urlencode($pub_id).'&pub_titulo=' . urlencode($pub_titulo).' "><h2 class="text-truncate" style="color:#00ff2d" id="nombrechat">' . $nombrechat .' - ' . $pub_titulo.'  </h2> </a>';
     }
     else{
-        $mi_chats .= '<a class="text-truncate" style="text-decoration:none" href="conversacion.php?id_friend=' . urlencode($id_amigo) . '&id_pub=' . urlencode($pub_id).'&pub_titulo=' . urlencode($pub_titulo).' "><h2 class="text-truncate" id="nombrechat">' . $nombrechat .' - ' . $pub_titulo.'  </h2> </a>';
+        $mi_chats .= '<a class="text-truncate" style="text-decoration:none; color:#fff" href="conversacion.php?id_friend=' . urlencode($id_amigo) . '&id_pub=' . urlencode($pub_id).'&pub_titulo=' . urlencode($pub_titulo).' "><h2 class="text-truncate" id="nombrechat">' . $nombrechat .' - ' . $pub_titulo.'  </h2> </a>';
     }
   
     $mi_chats .= '<div style="font-size: 12px;color: #c1c1c1; margin-top: -1%;">' . $hora_ultimo_mensaje . '</div>';

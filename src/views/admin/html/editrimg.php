@@ -48,7 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "Parámetros incorrectos en la solicitud.";
     }
-    header("Location:/var/www/geekhaven/src/views/admin/html/editimagen.php?mensaje=success&id=$producto");
+$pagAnterior= $_SERVER['HTTP_REFERER'];
+header("Location:editimagen.php?id=$producto");
 } 
 
 else {

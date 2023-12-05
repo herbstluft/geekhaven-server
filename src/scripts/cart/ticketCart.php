@@ -109,27 +109,27 @@ $ProductosPedido=$db->seleccionarDatos($ProductosPedidoQry);
   </body>
 </html>
 <?php
-//$html=ob_get_clean();
-// require_once '../dompdf/autoload.inc.php';
+$html=ob_get_clean();
+ require_once '../dompdf/autoload.inc.php';
                 
-// use Dompdf\Dompdf;
-//$dompdf = new Dompdf();
+ use Dompdf\Dompdf;
+$dompdf = new Dompdf();
 
-//$options = $dompdf->getOptions();
-//$options->set(array('isRemoteEnabled'=> true));
-//$dompdf->setOptions($options);
+$options = $dompdf->getOptions();
+$options->set(array('isRemoteEnabled'=> true));
+$dompdf->setOptions($options);
 
-//$dompdf->loadHtml($html);
+$dompdf->loadHtml($html);
 
 // formato carta
-//$dompdf->setPaper('letter');
+$dompdf->setPaper('letter');
 // formato horizontal
 // $dompdf-setPaper('A4','Landscape');
 
-//$dompdf->render();
+$dompdf->render();
 
-//$dompdf->stream("ticket1.pdf",array("Attachment"=>true));
+$dompdf->stream("ticket1.pdf",array("Attachment"=>true));
 
-//$HOST=$_SERVER['SERVER_NAME'];
-//header("refresh: 3; url=http://'.$HOST.'/var/www/geekhaven/");
+$HOST=$_SERVER['SERVER_NAME'];
+header("refresh: 3; url=http://'.$HOST.'/var/www/geekhaven/");
 ?>

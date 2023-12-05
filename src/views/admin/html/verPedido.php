@@ -77,11 +77,11 @@ foreach ($productosOrden as $mis_compras){
 ?>
             <div class="row">
                 <div class="col-5" style="margin-bottom:30px">
-                <img src="/var/www/geekhaven/src/views/admin/html/img_producto/<?php $id_producto=$mis_compras['id_producto'];
+                <img src="/img_producto/<?php $id_producto=$mis_compras['id_producto'];
                      $sacarImgQry="SELECT *  from productos INNER JOIN img_productos on img_productos.id_producto=productos.id_producto where productos.id_producto=$id_producto GROUP by img_productos.id_producto ";
                      $sacarImg=$db->seleccionarDatos($sacarImgQry);
                 foreach($sacarImg as $imagPrd){
-                echo $imagPrd['nombre_imagen'];?>" class="d-block" width="135"  height="135" alt="..."><?php echo "";}?>
+                echo $imagPrd['nombre_imagen'];?>" class="d-block" width="135"  height="135"><?php echo $imagPrd['nombre_imagen'];}?>
                 </div>
 
                 <div class="col-7 text-center" style="padding-top:30px">

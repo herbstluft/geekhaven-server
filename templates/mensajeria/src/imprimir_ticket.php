@@ -126,5 +126,5 @@ $dompdf->render();
 $dompdf->stream("ticket1.pdf",array("Attachment"=>true));
 
 $HOST=$_SERVER['SERVER_NAME'];
-header("refresh: 3; url=http://'.$HOST.'/var/www/geekhaven/");
+header("refresh: 3; url=http://'.$HOST.'/index.php");
 ?>

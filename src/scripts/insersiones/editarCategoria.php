@@ -13,10 +13,10 @@ $validacion=$db->seleccionarDatos($validacionQry);
 
 if(!empty($validacion)){
 
-    header("Location:/var/www/geekhaven/src/views/admin/html/NomCat.php?mensaje=failed&cat=$categoria&id=$id");
+    header("Location:/src/views/admin/html/NomCat.php?mensaje=failed&cat=$categoria&id=$id");
 }
 else{
 $updateQry="UPDATE `categoria` SET `nom_cat`='$catgeoria' WHERE `id_cat`=$id";
 $update=$db->ejecutarConsulta($updateQry);
-header("Location:/var/www/geekhaven/src/views/admin/html/NomCat.php?mensaje=success&cat=$categoria&id=$id");
+header("Location:/src/views/admin/html/NomCat.php?mensaje=success&cat=$categoria&id=$id");
 }

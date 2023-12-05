@@ -38,4 +38,4 @@ $db = new Database;
     } else {
         echo "Parámetros incorrectos en la solicitud.";
     }
- header("Location:/var/www/geekhaven/src/views/admin/html/editUniverso.php");
+ header("Location:/src/views/admin/html/editUniverso.php");

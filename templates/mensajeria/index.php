@@ -89,11 +89,11 @@ if (isset($_GET['id_pub']) && isset($_GET['id_usuario'])) {
 
             <?php
             if(isset($_SESSION['admin'])){ ?>
-              <a href="/var/www/geekhaven/src/views/admin/index.php" style="text-decoration:none"> <p  id="link">Inicio</p></a>
+              <a href="/src/views/admin/index.php" style="text-decoration:none"> <p  id="link">Inicio</p></a>
             <?php 
             }
             if(isset($_SESSION['user'])){ ?>
-              <a href="/var/www/geekhaven/index.php" style="text-decoration:none"> <p  id="link">Inicio</p></a>
+              <a href="/index.php" style="text-decoration:none"> <p  id="link">Inicio</p></a>
             <?php 
             }
             ?>

@@ -94,8 +94,8 @@ if (isset($_GET['mensaje'])) {
                             <div class="modal-body">
                                 <!-- Opciones para editar -->
                                 <div class="row">
-                                <a href="/var/www/geekhaven/src/views/admin/html/editimagen.php?id=<?php echo $id; ?>" class="btn btn-secondary col-sm-12 ">Imagen del Producto</a>
-                                <a href="/var/www/geekhaven/src/views/admin/html/editproducto.php?id=<?php echo $id; ?>" class="btn btn-secondary col-sm-12 mt-2 ">Producto</a>
+                                <a href="/src/views/admin/html/editimagen.php?id=<?php echo $id; ?>" class="btn btn-secondary col-sm-12 ">Imagen del Producto</a>
+                                <a href="/src/views/admin/html/editproducto.php?id=<?php echo $id; ?>" class="btn btn-secondary col-sm-12 mt-2 ">Producto</a>
                                 </div>
                                 
                             </div>
@@ -118,7 +118,7 @@ if (isset($_GET['mensaje'])) {
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-                <a id="eliminarProductoLink" href="/var/www/geekhaven/src/views/admin/html/eliminar_producto.php?id=<?php echo $id; ?>" class="btn btn-danger">Sí, eliminar</a>
+                <a id="eliminarProductoLink" href="/src/views/admin/html/eliminar_producto.php?id=<?php echo $id; ?>" class="btn btn-danger">Sí, eliminar</a>
             </div>
         </div>
     </div>

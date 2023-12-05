@@ -20,7 +20,7 @@ if(isset($_POST['guardar_producto'])){
 
 
     
-    header("location:/var/www/geekhaven/src/views/admin/html/aggexistencia.php?mensaje=success&id=$id");
+    header("location:/src/views/admin/html/aggexistencia.php?mensaje=success&id=$id");
 }
 
 ?>

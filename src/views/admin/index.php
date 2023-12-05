@@ -27,9 +27,8 @@
         AND YEAR(do.fecha_detalle) = $año_actual
     GROUP BY
         'año',
-        YEAR(do.fecha_detalle) = $año_actual
-    ORDER BY
-        'año' DESC;";
+       YEAR(do.fecha_detalle) 
+    ORDER BY 'año' DESC;";
 
 
   $ingreso_por_año=$db->seleccionarDatos($sql);
@@ -75,7 +74,7 @@ GROUP BY mes;
   WHERE
       do.estatus = 2
   GROUP BY
-      o.id_orden
+      o.id_orden, personas.nombre, personas.apellido, do.fecha_detalle
   ORDER BY do.fecha_detalle DESC limit 5";
 
     $ventas_recientes=$db->seleccionarDatos($sql);
@@ -97,7 +96,7 @@ JOIN tipo t ON p.tipo_id = t.id_tipo -- Asumiendo que hay un campo id_tipo en la
 WHERE
     do.estatus = 2
 GROUP BY
-    c.nom_cat
+    c.nom_cat, t.tipo, p.nom_producto
 ORDER BY
     SUM(p.precio * do.cantidad) DESC limit 5;";
 
@@ -408,7 +407,7 @@ var myChart = new Chart(ctx, {
                       $nombre=$productos_mas_vendidos['nombre'];
                       $precio=$productos_mas_vendidos['precio'];
                       $id_producto=$productos_mas_vendidos['id_producto'];
-                      $sacarImgQry="SELECT *  from productos INNER JOIN img_productos on img_productos.id_producto=productos.id_producto where productos.id_producto=$id_producto GROUP by img_productos.id_producto ";
+                      $sacarImgQry="SELECT *  from productos INNER JOIN img_productos on img_productos.id_producto=productos.id_producto where productos.id_producto=$id_producto  ";
                       $sacarImg=$db1->seleccionarDatos($sacarImgQry);
           ?>
 
@@ -423,7 +422,7 @@ var myChart = new Chart(ctx, {
                
                 if(!empty($imgt)){ ?>
 
-<img src="/var/www/geekhaven/src/views/admin/html/img_producto/<?php echo $imgt ?>" class="d-block w-100"  height="310px" alt="..."></a>
+<img src="/src/views/admin/html/img_producto/<?php echo $imgt ?>" class="d-block w-100"  height="310px" alt="..."></a>
 
                <?php } else{ ?>
 
