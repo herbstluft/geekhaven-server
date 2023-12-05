@@ -597,37 +597,53 @@ if(isset($_SESSION['user'])){
 
 
 <script>
-    // JavaScript para desplazarse automáticamente hacia el final de la lista de chats
-    window.onload = function() {
-        var elemento = document.getElementById("lista_de_chats");
-        if (elemento) {
-            elemento.scrollIntoView({ behavior: "smooth", block: "end" });
-        }
-    };
+function scrollToBottomOfPage() {
+    var isScrolledToBottom = $(window).scrollTop() + $(window).height() === $(document).height();
+    if (isScrolledToBottom) {
+        $('html, body').animate({ scrollTop: $(document).height() }, 'fast');
+    }
+}
 
-    // Esta función desplaza la página hacia abajo después de enviar un mensaje
-    function scrollToBottomOfPage() {
+
+function scrollToBottomOfPaged() {
         $('html, body').animate({ scrollTop: $(document).height() }, 'fast');
     }
 
-    // Esta función actualiza los chats y se desplaza hacia abajo cuando recibe un mensaje
-    function actualizarChats() {
-        $.ajax({
-            url: 'src/mensajes.php', // Nombre de tu archivo PHP que ejecuta la consulta SQL
-            type: 'GET',
-            success: function(data) {
-                $('#lista_de_chats').html(data); // Mostrar los resultados en el div
-                scrollToBottomOfPage(); // Desplazarse al final después de recibir un mensaje
-            },
-            complete: function() {
-                setTimeout(actualizarChats, 1000); // Realizar la próxima solicitud después de 1 segundos
-            }
-        });
-    }
 
-    $(document).ready(function() {
-        actualizarChats(); // Iniciar la actualización periódica
+    function actualizarChats() {
+    $.ajax({
+        url: 'src/mensajes.php',
+        type: 'GET',
+        success: function(data) {
+            var isScrolledToBottom = $(window).scrollTop() + $(window).height() === $(document).height();
+
+            $('#lista_de_chats').html(data);
+
+            if (isScrolledToBottom) {
+                scrollToBottomOfPaged();
+            }
+        },
+        complete: function() {
+            // Desplaza la página hacia abajo después de recibir un mensaje
+            setTimeout(function() {
+                scrollToBottomOfPage();
+            }, 500);
+
+            // Realiza la próxima solicitud después de 1 segundo
+            setTimeout(actualizarChats, 1000);
+        }
     });
+}
+
+$(document).ready(function() {
+    actualizarChats(); // Iniciar la actualización periódica
+});
+
+
+$(document).ready(function() {
+    actualizarChats();
+});
+
 </script>
 
 
@@ -682,8 +698,8 @@ if(isset($_SESSION['user'])){
 
                     // Desplaza la página hacia abajo después de enviar el mensaje
                     setTimeout(function() {
-                        scrollToBottomOfPage();
-                    },1000);
+                        scrollToBottomOfPaged();
+                    },0500);
                 },
                 
                 error: function(xhr, status, error) {
